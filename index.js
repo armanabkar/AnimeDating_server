@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import path from "path";
+import cors from "cors";
 import { suggestions, characters } from "./data.js";
 import { fileURLToPath } from "url";
 
@@ -11,6 +12,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -30,7 +32,13 @@ app.get(`${urlPrefix}/characters`, (req, res) => {
 
 app.get(`${urlPrefix}/character/:id`, (req, res) => {
   const character = characters.find((char) => char.id == req.params.id);
-  res.json(character);
+
+  if (character) {
+    res.json({ character });
+  } else {
+    res.status(404);
+    throw new Error("Character not found");
+  }
 });
 
 app.get(`${urlPrefix}/suggestions`, (req, res) => {
