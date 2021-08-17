@@ -1,18 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
-import path from "path";
+import { join, dirname } from "path";
 import cors from "cors";
 import { suggestions, characters } from "./data.js";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-dotenv.config();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+dotenv.config();
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -20,7 +19,7 @@ if (process.env.NODE_ENV === "development") {
 
 const urlPrefix = "/api/v1";
 
-app.use("/images", express.static(__dirname + "/images"));
+app.use("/images", express.static(join(__dirname, "images")));
 
 app.get("/", (req, res) => {
   res.sendFile("index.html", { root: __dirname });

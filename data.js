@@ -358,7 +358,7 @@ export const characters = [
   },
   {
     id: 52,
-    name: "	Ayato Kirishima",
+    name: "Ayato Kirishima",
     neighborhood: "Tokyo",
     age: 19,
     image: "images/ayatokirishima.jpg",
