@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const app = express();
+export const app = express();
 app.use(express.json());
 app.use(cors());
 dotenv.config();
@@ -44,7 +44,7 @@ app.get(`${urlPrefix}/suggestions`, (req, res) => {
   res.json(shuffle(suggestions));
 });
 
-function shuffle(array) {
+export function shuffle(array) {
   var currentIndex = array.length,
     randomIndex;
   while (0 !== currentIndex) {
