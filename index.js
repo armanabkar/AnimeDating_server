@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import { join, dirname } from "path";
 import cors from "cors";
-import { suggestions, characters } from "./data.js";
+import { suggestions, characters, users } from "./data.js";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -38,6 +38,10 @@ app.get(`${urlPrefix}/character/:id`, (req, res) => {
     res.status(404);
     throw new Error("Character not found");
   }
+});
+
+app.get(`${urlPrefix}/users`, (req, res) => {
+  res.json(shuffle(users));
 });
 
 app.get(`${urlPrefix}/suggestions`, (req, res) => {
