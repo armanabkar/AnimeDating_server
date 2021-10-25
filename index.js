@@ -12,10 +12,7 @@ export const app = express();
 app.use(express.json());
 app.use(cors());
 dotenv.config();
-
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+process.env.NODE_ENV === "development" && app.use(morgan("dev"));
 
 const urlPrefix = "/api/v1";
 
@@ -68,6 +65,7 @@ app.listen(
   PORT,
   process.env.NODE_ENV === "development" &&
     console.log(
-      `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+      "\x1b[35m",
+      `[ Server running in ${process.env.NODE_ENV} mode on port "http://localhost:${PORT}" ]`
     )
 );
