@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
   res.sendFile("index.html", { root: __dirname });
 });
 
+app.get("/start", (req, res) => {
+  res.send("Welcome to Anime Dating!");
+});
+
 app.get(`${urlPrefix}/characters`, (req, res) => {
   res.json(shuffle(characters));
 });

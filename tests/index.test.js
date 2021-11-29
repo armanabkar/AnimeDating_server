@@ -27,6 +27,17 @@ describe("Test utility methods", () => {
       });
   });
 
+  it("should return welcome", (done) => {
+    chai
+      .request(app)
+      .get("/start")
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.text.should.be.equal("Welcome to Anime Dating!");
+        done();
+      });
+  });
+
   it("should shuffle the array", () => {
     chai.assert.notEqual([1, 2, 3, 4, 5], shuffle([1, 2, 3, 4, 5]));
   });
