@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "test": "mocha tests/index.test.js --exit"
   },
-  "author": "Arman Abkar",
+  "author": "Arman",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
